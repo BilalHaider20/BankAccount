@@ -13,6 +13,19 @@ public class Processing {
     {
         accounts.add( obj);
     }
+    void deleteAccount(int accountnumber){
+        boolean found=true;
+        for(BankAccount a:accounts ){
+            if(a.account_num==accountnumber){
+                accounts.remove(a);
+                found=true;
+                break;
+            }
+            found=false;
+    }
+        if(!found){
+            System.out.println("Account not found with this account number");}
+    }
 
     public void verificaion()
     {
@@ -108,22 +121,13 @@ public class Processing {
                     break;
                 case 2:
 
-                    boolean balance=true;
-                    do {
                        money=safeinputDouble("Enter amount you want to withdraw");
                        money=Math.abs(money);
-                        if (money > obj.getBalance()) {
-                            System.out.println("You do not have enough balance");
-                            balance=true;
-                            continue;
-                        } else if (money <= obj.getBalance() && money > 0)
-                            balance=false;
-                            System.out.println(obj.withdraw(money));
-                    }while(balance);
+                           obj.withdraw(money);
                     break;
                 case 3:
 
-                    System.out.println("Your Account Balance is " + obj.getBalance());
+                    System.out.println( "Your balance is = " +obj.getBalance());
                     break;
                 case 4:
                     System.out.println(obj);
@@ -145,7 +149,7 @@ public class Processing {
             }
         }while(invalid);
     }
-    public int safeinputInt(String prompt) {
+    public int safeinputInt(String prompt) { //// Method for Exception handling of type Integer
         int safeinput;
         while (true)
         {
@@ -161,7 +165,8 @@ public class Processing {
                 }
         }
         return safeinput;
-    }public double safeinputDouble(String prompt) {
+    }
+    public double safeinputDouble(String prompt) { // Method for Exception handling of type Double
         double safeinput;
         while (true)
         {
